@@ -8,22 +8,20 @@ Season 2 of 2026 ends at 11:59pm on July 28, your server's local time. Servers u
 <table>
   <thead><tr><th>Region</th><th>End Time</th></tr></thead>
   <tbody>
-    <tr><td>OC1</td>  <td class="ts" data-ts="1785247140"></td></tr>
-    <tr><td>JP1</td>  <td class="ts" data-ts="1785250740"></td></tr>
-    <tr><td>KR1</td>  <td class="ts" data-ts="1785250740"></td></tr>
-    <tr><td>PH</td>   <td class="ts" data-ts="1785254340"></td></tr>
-    <tr><td>SG</td>   <td class="ts" data-ts="1785254340"></td></tr>
-    <tr><td>TW</td>   <td class="ts" data-ts="1785254340"></td></tr>
-    <tr><td>VN</td>   <td class="ts" data-ts="1785257940"></td></tr>
-    <tr><td>TH</td>   <td class="ts" data-ts="1785257940"></td></tr>
+    <tr><td>OCE</td>  <td class="ts" data-ts="1785247140"></td></tr>
+    <tr><td>JP</td>  <td class="ts" data-ts="1785250740"></td></tr>
+    <tr><td>KR</td>  <td class="ts" data-ts="1785250740"></td></tr>
+    <tr><td>SEA</td>  <td class="ts" data-ts="1785254340"></td></tr>
+    <tr><td>TW</td>  <td class="ts" data-ts="1785254340"></td></tr>
+    <tr><td>VN</td>  <td class="ts" data-ts="1785257940"></td></tr>
     <tr><td>RU</td>   <td class="ts" data-ts="1785272340"></td></tr>
-    <tr><td>TR1</td>  <td class="ts" data-ts="1785272340"></td></tr>
-    <tr><td>EUN1</td> <td class="ts" data-ts="1785275940"></td></tr>
-    <tr><td>EUW1</td> <td class="ts" data-ts="1785279540"></td></tr>
-    <tr><td>BR1</td>  <td class="ts" data-ts="1785293940"></td></tr>
-    <tr><td>LA2</td>  <td class="ts" data-ts="1785293940"></td></tr>
-    <tr><td>LA1</td>  <td class="ts" data-ts="1785301140"></td></tr>
-    <tr><td>NA1</td>  <td class="ts" data-ts="1785308340"></td></tr>
+    <tr><td>TR</td>  <td class="ts" data-ts="1785272340"></td></tr>
+    <tr><td>EUNE</td> <td class="ts" data-ts="1785275940"></td></tr>
+    <tr><td>EUW</td> <td class="ts" data-ts="1785279540"></td></tr>
+    <tr><td>BR</td>  <td class="ts" data-ts="1785293940"></td></tr>
+    <tr><td>LAS</td>  <td class="ts" data-ts="1785293940"></td></tr>
+    <tr><td>LAN</td>  <td class="ts" data-ts="1785301140"></td></tr>
+    <tr><td>NA</td>  <td class="ts" data-ts="1785308340"></td></tr>
   </tbody>
 </table>
 
