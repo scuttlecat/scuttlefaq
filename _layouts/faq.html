@@ -1,0 +1,8 @@
+---
+layout: default
+---
+<article class="answer-page">
+  <h1>{{ page.title }}</h1>
+  {{ content }}
+  <a class="backlink" href="{{ '/' | relative_url }}#{{ page.url | slugify }}">← All questions</a>
+</article>

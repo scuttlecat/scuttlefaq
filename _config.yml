@@ -1,0 +1,35 @@
+# ── Site settings ─────────────────────────────────────────────
+# IMPORTANT: set these two correctly or your Discord embeds will
+# point at the wrong URLs (OG tags need absolute URLs).
+#
+# For a *project* site (https://USERNAME.github.io/REPO-NAME/):
+#   url: "https://USERNAME.github.io"
+#   baseurl: "/REPO-NAME"
+#
+# For a *user* site (https://USERNAME.github.io/):
+#   url: "https://USERNAME.github.io"
+#   baseurl: ""
+url: "https://YOUR-USERNAME.github.io"
+baseurl: "/YOUR-REPO-NAME"
+
+title: "My Project FAQ"
+description: "Frequently asked questions about My Project."
+
+# Color of the stripe on the left edge of the Discord embed
+embed_color: "#5865F2"
+
+# ── The important part ────────────────────────────────────────
+# Every .md file in the _faqs/ folder becomes its own page at
+# /faq/<filename>/ — giving each question a unique URL that
+# Discord can crawl for its own embed.
+collections:
+  faqs:
+    output: true
+    permalink: /faq/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: faqs
+    values:
+      layout: faq
