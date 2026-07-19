@@ -1,0 +1,15 @@
+---
+layout: default
+---
+{% assign sorted = site.faqs | sort: "order" %}
+{% for faq in sorted %}
+  {% assign anchor = faq.url | slugify %}
+  <section class="q" id="{{ anchor }}">
+    <h2><a href="#{{ anchor }}">{{ faq.title }}</a></h2>
+    {{ faq.content }}
+    <p class="permalink">
+      Share this answer on Discord:
+      <a href="{{ faq.url | relative_url }}">{{ faq.url | absolute_url }}</a>
+    </p>
+  </section>
+{% endfor %}

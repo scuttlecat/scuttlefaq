@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% if page.title %}
+    <title>{{ page.title }} — {{ site.title }}</title>
+  {% else %}
+    <title>{{ site.title }}</title>
+  {% endif %}
+
+  <!-- ── Open Graph tags: this is what Discord reads ── -->
+  <!-- FAQ pages set `summary` in their front matter, which becomes
+       og:description. The index falls back to the site description. -->
+  <meta property="og:type" content="{% if page.summary %}article{% else %}website{% endif %}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ page.summary | default: site.description | strip_newlines | strip }}">
+  <meta property="og:url" content="{{ page.url | absolute_url }}">
+  <meta name="theme-color" content="{{ site.embed_color }}">
+  <meta name="twitter:card" content="summary">
+
+  <style>
+    :root {
+      --ink: #1d2129;
+      --paper: #fafaf7;
+      --accent: #5865F2;
+      --rule: #e3e2dc;
+      --muted: #6b7080;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 17px/1.65 Georgia, 'Times New Roman', serif;
+    }
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 5rem;
+    }
+    header.site {
+      border-bottom: 3px double var(--rule);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    header.site h1 {
+      margin: 0 0 .25rem;
+      font-size: 2rem;
+      letter-spacing: -0.01em;
+    }
+    header.site p { margin: 0; color: var(--muted); }
+    header.site a { color: inherit; text-decoration: none; }
+    a { color: var(--accent); }
+    .q {
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .q h2 {
+      margin: 0 0 .6rem;
+      font-size: 1.3rem;
+      line-height: 1.35;
+    }
+    .q h2 a { color: inherit; text-decoration: none; }
+    .q h2 a:hover { text-decoration: underline; }
+    .permalink {
+      font: 13px/1 system-ui, sans-serif;
+      color: var(--muted);
+    }
+    .permalink a { color: var(--muted); }
+    .answer-page h1 {
+      font-size: 1.7rem;
+      line-height: 1.3;
+      margin: 0 0 1rem;
+    }
+    .backlink {
+      display: inline-block;
+      margin-top: 2.5rem;
+      font: 14px/1 system-ui, sans-serif;
+    }
+    code {
+      font-size: .88em;
+      background: #efeee9;
+      padding: .1em .35em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+      <p>{{ site.description }}</p>
+    </header>
+    <main>
+      {{ content }}
+    </main>
+  </div>
+</body>
+</html>
