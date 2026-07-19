@@ -9,11 +9,11 @@
 # For a *user* site (https://USERNAME.github.io/):
 #   url: "https://USERNAME.github.io"
 #   baseurl: ""
-url: "https://YOUR-USERNAME.github.io"
-baseurl: "/YOUR-REPO-NAME"
+url: "https://scuttlecat.github.io"
+baseurl: "/scuttlefaq"
 
-title: "My Project FAQ"
-description: "Frequently asked questions about My Project."
+title: "scuttlefaq"
+description: "stupid fucking questions"
 
 # Color of the stripe on the left edge of the Discord embed
 embed_color: "#5865F2"
