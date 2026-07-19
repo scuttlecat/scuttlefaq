@@ -21,38 +21,97 @@
   <meta name="theme-color" content="{{ site.embed_color }}">
   <meta name="twitter:card" content="summary">
 
-  <style>
+<style>
     :root {
-        --ink: #d6dee9;        /* body text */
-        --paper: #0a0e16;      /* page background */
-        --panel: #0e1420;      /* answer card background */
-        --accent: #c9a961;     /* gold — links, region names */
-        --rule: #1f2b3d;       /* hairlines */
-        --muted: #8fa3bd;      /* secondary text */
+      --ink: #d6dee9;
+      --paper: #0a0e16;
+      --panel: #0e1420;
+      --accent: #c9a961;
+      --rule: #1f2b3d;
+      --muted: #8fa3bd;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 17px/1.65 Georgia, 'Times New Roman', serif;
+    }
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 5rem;
+    }
+    header.site {
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    header.site h1 {
+      margin: 0 0 .25rem;
+      font-size: 2rem;
+      letter-spacing: -0.01em;
+    }
+    header.site p { margin: 0; color: var(--muted); }
+    header.site a { color: var(--ink); text-decoration: none; }
+    a { color: var(--accent); }
+    .q {
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .q h2 {
+      margin: 0 0 .6rem;
+      font-size: 1.3rem;
+      line-height: 1.35;
+    }
+    .q h2 a { color: var(--ink); text-decoration: none; }
+    .q h2 a:hover { color: var(--accent); }
+    .permalink {
+      font: 13px/1.4 system-ui, sans-serif;
+      color: var(--muted);
+      word-break: break-all;
+    }
+    .permalink a { color: var(--muted); }
+    .answer-page h1 {
+      font-size: 1.7rem;
+      line-height: 1.3;
+      margin: 0 0 1rem;
+    }
+    .backlink {
+      display: inline-block;
+      margin-top: 2.5rem;
+      font: 14px/1 system-ui, sans-serif;
+    }
+    code {
+      font-size: .88em;
+      background: #1a2432;
+      color: var(--ink);
+      padding: .1em .35em;
+      border-radius: 3px;
     }
 
     table {
-        width: 100%;
-        border-collapse: collapse;   /* this is what makes borders actually meet */
-        font: 14px/1.5 system-ui, sans-serif;
-        margin: 1.25rem 0;
+      width: 100%;
+      border-collapse: collapse;
+      font: 14px/1.5 system-ui, sans-serif;
+      margin: 1.25rem 0;
     }
     th {
-        text-align: left;
-        padding: 8px 12px;
-        color: var(--muted);
-        font-weight: 500;
-        font-size: 12px;
-        letter-spacing: .06em;
-        border-bottom: 1px solid var(--rule);
+      text-align: left;
+      padding: 8px 12px;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 12px;
+      letter-spacing: .06em;
+      border-bottom: 1px solid var(--rule);
     }
     td {
-    padding: 9px 12px;
-    border-bottom: 0.5px solid #1a2432;
+      padding: 9px 12px;
+      border-bottom: 1px solid #1a2432;
     }
-    td:first-child {          /* region column */
-        color: var(--accent);
-        font-weight: 500;
+    td:first-child {
+      color: var(--accent);
+      font-weight: 500;
     }
     td:last-child { text-align: right; }
     tr:last-child td { border-bottom: none; }
