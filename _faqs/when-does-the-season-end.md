@@ -6,7 +6,7 @@ order: 2
 Season 2 of 2026 ends at 11:59pm on July 28, your server's local time. Servers use different timezones.
 
 <table>
-  <thead><tr><th>Region</th><th>Start Time</th></tr></thead>
+  <thead><tr><th>Region</th><th>End Time</th></tr></thead>
   <tbody>
     <tr><td>OC1</td>  <td class="ts" data-ts="1785247140"></td></tr>
     <tr><td>JP1</td>  <td class="ts" data-ts="1785250740"></td></tr>
