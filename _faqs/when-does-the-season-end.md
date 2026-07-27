@@ -1,7 +1,8 @@
 ---
 title: "When does the season end?"
 summary: "Season 2 of 2026 ends at 11:59pm on July 28, your server's local time. Servers use different timezones. Click for info."
-order: 2
+category: "Seasons & Ranked"
+order: 3
 ---
 Season 2 of 2026 ends at 11:59pm on July 28, your server's local time. Servers use different timezones.
 

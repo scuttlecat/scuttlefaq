@@ -27,6 +27,18 @@ collections:
     output: true
     permalink: /faq/:name/
 
+# ── Category order on the index page ──────────────────────────
+# Categories are shown in this order. A question joins a category
+# by setting `category: "<name>"` in its front matter — the name
+# must match exactly. Anything with a missing or misspelled
+# category lands in an "Uncategorized" group at the bottom, so it
+# never silently disappears from the page.
+faq_categories:
+  - "Seasons & Ranked"
+  - "Skins"
+  - "Shops & Currency"
+  - "Game Modes"
+
 defaults:
   - scope:
       path: ""

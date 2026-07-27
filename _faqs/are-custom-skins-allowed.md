@@ -1,7 +1,8 @@
 ---
 title: "Are custom skins allowed?"
 summary: "Custom skins are use at your own risk, and if you are accidentally banned for it, you will not be unbanned. Click for additional info."
-order: 2
+category: "Skins"
+order: 8
 ---
 Riot wont actively hunt you down as long as you arent using actual skins.<br>
 However, they reserve the right to ban you for it whenever they want to.<br>
