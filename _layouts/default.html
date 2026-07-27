@@ -55,17 +55,97 @@
     header.site p { margin: 0; color: var(--muted); }
     header.site a { color: var(--ink); text-decoration: none; }
     a { color: var(--accent); }
-    .q {
-      padding: 1.75rem 0;
-      border-bottom: 1px solid var(--rule);
+    /* ── index toolbar (search + expand all) ── */
+    .faq-toolbar {
+      display: flex;
+      gap: .6rem;
+      margin-bottom: 1.25rem;
     }
-    .q h2 {
-      margin: 0 0 .6rem;
-      font-size: 1.3rem;
-      line-height: 1.35;
+    #faq-filter {
+      flex: 1;
+      min-width: 0;
+      padding: .6rem .75rem;
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      background: var(--panel);
+      color: var(--ink);
+      font: 15px/1.4 Roboto, sans-serif;
     }
-    .q h2 a { color: var(--ink); text-decoration: none; }
-    .q h2 a:hover { color: var(--accent); }
+    #faq-filter::placeholder { color: var(--muted); }
+    #faq-filter:focus { outline: none; border-color: var(--accent); }
+    .faq-toolbar button {
+      padding: .6rem .85rem;
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      background: var(--panel);
+      color: var(--muted);
+      font: 13px/1.4 system-ui, sans-serif;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .faq-toolbar button:hover,
+    .faq-toolbar button:focus-visible {
+      color: var(--accent);
+      border-color: var(--accent);
+      outline: none;
+    }
+    .faq-empty {
+      color: var(--muted);
+      font-style: italic;
+      margin: 1.5rem 0;
+    }
+
+    /* ── category accordion ── */
+    .cat { border-top: 1px solid var(--rule); }
+    .cat:last-child { border-bottom: 1px solid var(--rule); }
+    .cat > summary {
+      display: flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .95rem .25rem;
+      font-size: 1.15rem;
+      font-weight: 500;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+    .cat > summary::-webkit-details-marker { display: none; }
+    .cat > summary::before {
+      content: "";
+      flex: none;
+      width: 0;
+      height: 0;
+      border-left: 6px solid currentColor;
+      border-top: 4.5px solid transparent;
+      border-bottom: 4.5px solid transparent;
+      transition: transform .15s ease;
+    }
+    .cat[open] > summary::before { transform: rotate(90deg); }
+    .cat > summary:hover,
+    .cat > summary:focus-visible { color: var(--accent); outline: none; }
+    .cat .count {
+      color: var(--muted);
+      font-size: .8rem;
+      font-weight: 400;
+    }
+    .cat-body { padding: 0 0 .6rem 1.35rem; }
+
+    /* ── individual question ── */
+    .q { border-top: 1px solid #16202e; }
+    .q:first-child { border-top: none; }
+    .q > summary {
+      padding: .65rem .25rem;
+      font-size: 1.02rem;
+      cursor: pointer;
+      list-style: none;
+    }
+    .q > summary::-webkit-details-marker { display: none; }
+    .q > summary:hover,
+    .q > summary:focus-visible { color: var(--accent); outline: none; }
+    .q[open] > summary { color: var(--accent); }
+    .q-body { padding: .15rem .25rem 1.1rem; }
+    .q-body > :first-child { margin-top: 0; }
+    .q[hidden], .cat[hidden] { display: none; }
     .permalink {
       font: 13px/1.4 system-ui, sans-serif;
       color: var(--muted);
@@ -239,6 +319,101 @@
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
       });
+    })();
+  </script>
+
+  <!-- ── index accordion: deep links, search filter, expand all ── -->
+  <script>
+    (() => {
+      const list = document.querySelector('.faq-list');
+      if (!list) return;
+
+      const cats = [...list.querySelectorAll('details.cat')];
+      const items = [...list.querySelectorAll('details.q')];
+      const filter = document.getElementById('faq-filter');
+      const expandBtn = document.getElementById('faq-expand');
+      const empty = document.querySelector('.faq-empty');
+      const filtering = () => filter.value.trim() !== '';
+
+      // Open the category + question a #anchor points at, so every link
+      // already shared on Discord still lands on a visible answer.
+      const revealHash = (scroll) => {
+        const id = decodeURIComponent(location.hash.slice(1));
+        if (!id) return;
+        const target = document.getElementById(id);
+        if (!target || !target.classList.contains('q')) return;
+        target.closest('details.cat')?.setAttribute('open', '');
+        target.open = true;
+        if (scroll) target.scrollIntoView({ block: 'center' });
+      };
+      revealHash(true);
+      window.addEventListener('hashchange', () => revealHash(true));
+
+      // Keep the URL pointing at whatever question is being read.
+      items.forEach((q) => {
+        q.addEventListener('toggle', () => {
+          if (q.open && !filtering()) history.replaceState(null, '', '#' + q.id);
+        });
+      });
+
+      const syncExpandBtn = () => {
+        const allOpen = cats.every((c) => c.open);
+        expandBtn.textContent = allOpen ? 'Collapse all' : 'Expand all';
+        expandBtn.setAttribute('aria-expanded', String(allOpen));
+      };
+      expandBtn.addEventListener('click', () => {
+        const open = !cats.every((c) => c.open);
+        cats.forEach((c) => { c.open = open; });
+        syncExpandBtn();
+      });
+      cats.forEach((c) => c.addEventListener('toggle', syncExpandBtn));
+      syncExpandBtn();
+
+      // Search: matches title + summary + answer text (see _includes/faq-item.html).
+      // While filtering, matching categories are force-opened; the pre-search
+      // open/closed state is restored when the box is cleared.
+      let saved = null;
+      const applyFilter = () => {
+        const query = filter.value.trim().toLowerCase();
+
+        if (!query) {
+          items.forEach((q) => { q.hidden = false; });
+          cats.forEach((c) => { c.hidden = false; });
+          if (saved) {
+            cats.forEach((c, i) => { c.open = saved.cats[i]; });
+            items.forEach((q, i) => { q.open = saved.items[i]; });
+            saved = null;
+          }
+          empty.hidden = true;
+          syncExpandBtn();
+          return;
+        }
+
+        if (!saved) {
+          saved = { cats: cats.map((c) => c.open), items: items.map((q) => q.open) };
+        }
+
+        let total = 0;
+        cats.forEach((cat) => {
+          let shown = 0;
+          cat.querySelectorAll('details.q').forEach((q) => {
+            const hit = q.dataset.search.includes(query);
+            q.hidden = !hit;
+            if (hit) shown += 1;
+          });
+          cat.hidden = shown === 0;
+          cat.open = shown > 0;
+          total += shown;
+        });
+        empty.hidden = total > 0;
+        syncExpandBtn();
+      };
+
+      filter.addEventListener('input', applyFilter);
+      filter.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') { filter.value = ''; applyFilter(); }
+      });
+      if (filter.value) applyFilter(); // e.g. restored on back/forward
     })();
   </script>
 </body>

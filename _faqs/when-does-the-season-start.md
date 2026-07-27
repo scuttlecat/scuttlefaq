@@ -1,6 +1,7 @@
 ---
 title: "When does the season start?"
 summary: "Season 3 of 2026 starts at 12pm (noon) on July 29, your server's local time. Servers use different timezones. Click for info."
+category: "Seasons & Ranked"
 order: 2
 ---
 Season 3 of 2026 starts at 12pm (noon) on July 29, your server's local time. Servers use different timezones.

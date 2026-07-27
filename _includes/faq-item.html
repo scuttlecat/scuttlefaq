@@ -1,0 +1,28 @@
+{%- comment -%}
+  One collapsible question row on the index page.
+  Usage: {% include faq-item.html faq=faq %}
+
+  The id is `faq.url | slugify` — the same anchor the old flat index
+  used and the same one _layouts/faq.html links back to, so every
+  link already shared on Discord keeps working.
+
+  data-search is a pre-lowercased haystack the filter box in
+  _layouts/default.html matches against. It deliberately uses only
+  title + summary, not the rendered answer: some answers embed script
+  and table markup whose text would produce junk matches, and the
+  summary already restates the answer in prose.
+{%- endcomment -%}
+{%- assign anchor = include.faq.url | slugify -%}
+{%- capture haystack -%}
+{{ include.faq.title }} {{ include.faq.summary }}
+{%- endcapture -%}
+<details class="q" id="{{ anchor }}" data-search="{{ haystack | strip_newlines | downcase | escape }}">
+  <summary>{{ include.faq.title }}</summary>
+  <div class="q-body">
+    {{ include.faq.content }}
+    <p class="permalink">
+      Share this answer on Discord:
+      <a href="{{ include.faq.url | relative_url }}">{{ include.faq.url | absolute_url }}</a>
+    </p>
+  </div>
+</details>
