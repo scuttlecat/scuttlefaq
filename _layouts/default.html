@@ -77,6 +77,73 @@
       line-height: 1.3;
       margin: 0 0 1rem;
     }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: .75rem;
+      margin: 1.5rem 0;
+    }
+    .image-gallery a {
+      display: block;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      border-radius: 5px;
+      background: var(--panel);
+      cursor: zoom-in;
+    }
+    .image-gallery a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    .image-gallery img {
+      display: block;
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      transition: opacity .15s ease, transform .15s ease;
+    }
+    .image-gallery a:hover img {
+      opacity: .85;
+      transform: scale(1.02);
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 3rem 1.25rem 1.25rem;
+      background: rgb(0 0 0 / 88%);
+    }
+    .lightbox[hidden] { display: none; }
+    .lightbox img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(100vh - 4.25rem);
+      object-fit: contain;
+      box-shadow: 0 8px 40px rgb(0 0 0 / 55%);
+    }
+    .lightbox__close {
+      position: absolute;
+      top: .75rem;
+      right: .75rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border: 1px solid rgb(255 255 255 / 35%);
+      border-radius: 50%;
+      background: rgb(10 14 22 / 80%);
+      color: #fff;
+      font: 1.75rem/1 system-ui, sans-serif;
+      cursor: pointer;
+    }
+    .lightbox__close:hover,
+    .lightbox__close:focus-visible {
+      border-color: var(--accent);
+      color: var(--accent);
+      outline: none;
+    }
+    body.lightbox-open { overflow: hidden; }
     .backlink {
       display: inline-block;
       margin-top: 2.5rem;
@@ -127,5 +194,52 @@
       {{ content }}
     </main>
   </div>
+
+  <div class="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" hidden>
+    <button class="lightbox__close" type="button" aria-label="Close image preview">&times;</button>
+    <img class="lightbox__image" src="" alt="">
+  </div>
+
+  <script>
+    (() => {
+      const lightbox = document.querySelector('.lightbox');
+      const lightboxImage = lightbox.querySelector('.lightbox__image');
+      const closeButton = lightbox.querySelector('.lightbox__close');
+      const page = document.querySelector('.wrap');
+      let opener = null;
+
+      const closeLightbox = () => {
+        lightbox.hidden = true;
+        lightboxImage.src = '';
+        lightboxImage.alt = '';
+        document.body.classList.remove('lightbox-open');
+        page.inert = false;
+        opener?.focus();
+        opener = null;
+      };
+
+      document.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-lightbox]');
+        if (!link) return;
+
+        event.preventDefault();
+        opener = link;
+        lightboxImage.src = link.href;
+        lightboxImage.alt = link.querySelector('img')?.alt || '';
+        lightbox.hidden = false;
+        document.body.classList.add('lightbox-open');
+        page.inert = true;
+        closeButton.focus();
+      });
+
+      closeButton.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
+      });
+    })();
+  </script>
 </body>
 </html>
