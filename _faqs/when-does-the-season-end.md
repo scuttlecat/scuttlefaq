@@ -1,10 +1,10 @@
 ---
 title: "When does the season end?"
-summary: "Season 2 of 2026 ends at 11:59pm on July 28, your server's local time. Servers use different timezones. Click for info."
+summary: "Season 2 of 2026 ends at 11:59pm on July 28, your server's local time. Servers use different timezones. Click for info. This timer is _LITERALLY_ always available in the client. Click your profile icon in the top right, then click ranked. You will see a countdown for your server's season end. Wow!"
 category: "Seasons & Ranked"
 order: 3
 ---
-Season 2 of 2026 ends at 11:59pm on July 28, your server's local time. Servers use different timezones.
+Season 2 of 2026 ends at 11:59pm on July 28, your server's local time. Servers use different timezones. This timer is <strong>LITERALLY</strong> always available in the client. Click your profile icon in the top right, then click ranked. You will see a countdown for your server's season end. Wow!
 
 <table>
   <thead><tr><th>Region</th><th>End Time</th></tr></thead>
