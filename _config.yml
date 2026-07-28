@@ -34,6 +34,7 @@ collections:
 # category lands in an "Uncategorized" group at the bottom, so it
 # never silently disappears from the page.
 faq_categories:
+  - "General"
   - "Seasons & Ranked"
   - "Skins"
   - "Shops & Currency"
