@@ -4,5 +4,5 @@ summary: "Servers patch early morning in the timezone of that server. The server
 category: "General"
 order: 2
 ---
-Servers patch early morning in the timezone of that server. The <a href="https://status.riotgames.com/">server status page</a> (set the dropdown to YOUR SERVER) will always show you approximate times for patching maintenance the day of. There are no EXACT times when servers come up from patch maintenance.<br><br>
+Servers patch early morning in the timezone of that server. The <a href="https://status.riotgames.com/">server status page</a> (set the dropdown to YOUR SERVER) will always show you approximate times for patching maintenance the day of. There are no EXACT times when servers come up from patch maintenance.  Skins do not release when the patch is out, and gamemodes typically do not either.<br><br>
 <a href="https://support.riotgames.com/en-us/league-of-legends/gameplay/patch-schedule-league-of-legends">Patch Schedule</a>
