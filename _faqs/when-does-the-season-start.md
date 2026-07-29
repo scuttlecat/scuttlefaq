@@ -1,10 +1,10 @@
 ---
 title: "When does the season start?"
-summary: "Season 3 of 2026 starts at 12pm (noon) on July 29, your server's local time. Servers use different timezones. THIS IS WHEN RANKED QUEUE IS BACK. Click for info."
+summary: "ACCORDING TO RIOT IN PATCH NOTES 26.15, RSeason 3 of 2026 starts at 12pm (noon) on July 29, your server's local time. Servers use different timezones. Click for timezone info. THIS IS WHEN RANKED QUEUE IS BACK. Riot is bad at dates and times and coding, so expect it to be late."
 category: "Seasons & Ranked"
 order: 2
 ---
-Season 3 of 2026 starts at 12pm (noon) on July 29, your server's local time. Servers use different timezones. THIS IS WHEN RANKED QUEUE IS BACK.
+ACCORDING TO RIOT IN PATCH NOTES 26.15, RSeason 3 of 2026 starts at 12pm (noon) on July 29, your server's local time. Servers use different timezones. THIS IS WHEN RANKED QUEUE IS BACK. Riot is bad at dates and times and coding, so expect it to be late.
 
 <table>
   <thead><tr><th>Region</th><th>Start Time</th></tr></thead>
