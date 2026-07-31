@@ -38,7 +38,6 @@ faq_categories:
   - "Seasons & Ranked"
   - "Skins"
   - "Shops & Currency"
-  - "Game Modes"
 
 defaults:
   - scope:
