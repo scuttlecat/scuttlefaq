@@ -1,6 +1,6 @@
 ---
 title: "When does the season start?"
-summary: "Since 2025, seasons (this means RANKED QUEUE) begins 12 noon your local server time. Click for timezone info.
+summary: "Since 2025, seasons (this means RANKED QUEUE) begins 12 noon your local server time. Click for timezone info."
 category: "Seasons & Ranked"
 order: 2
 ---
