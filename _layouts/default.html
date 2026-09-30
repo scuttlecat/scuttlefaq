@@ -21,90 +21,164 @@
   <meta name="theme-color" content="{{ site.embed_color }}">
   <meta name="twitter:card" content="summary">
 
-<style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700&family=Space+Mono:wght@700&display=swap">
+
+  <style>
+
     :root {
-      --ink: #d6dee9;
-      --paper: #0a0e16;
-      --panel: #0e1420;
-      --accent: #c9a961;
-      --rule: #1f2b3d;
-      --muted: #8fa3bd;
+      color-scheme: dark;
+      --void: #0e1322;
+      --nebula: #182038;
+      --orbit: #2a3458;
+      --on-orbit: #eef5e2;
+      --on-orbit-muted: #b9c4d8;
+      --hairline: #2e3854;
+      --ink: #eef5e2;
+      --ink-muted: #a9b5a0;
+      --glorp: #a9d35f;
+      --glorp-deep: #a9d35f;
+      --glorp-soft: #2f4a1e;
+      --on-glorp: #16280a;
+      --blush: #ff9fc6;
+      --starlight: #ffe082;
+      --glow: 0 0 24px rgba(169, 211, 95, 0.35);
+
+      --font-display: Fredoka, "Nunito", system-ui, sans-serif;
+      --font-sans: Nunito, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "Space Mono", ui-monospace, Menlo, monospace;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-10: 40px;
+
+      --radius-sm: 8px;
+      --radius-lg: 20px;
+      --radius-pill: 999px;
     }
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: light;
+        --void: #f5f8ec;
+        --nebula: #ffffff;
+        --orbit: #1b2440;
+        --on-orbit: #f5f8ec;
+        --hairline: #d6dfc6;
+        --ink: #172031;
+        --ink-muted: #56604f;
+        --glorp-deep: #46691f;
+        --glorp-soft: #dcefbf;
+        --blush: #ff8fbc;
+        --starlight: #ffd45c;
+        --glow: 0 6px 20px rgba(70, 105, 31, 0.18);
+      }
+    }
+
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: var(--paper);
+      background: var(--void);
       color: var(--ink);
-      font: 17px/1.65 Roboto, 'Roboto', sans-serif;
+      font: 400 17px/1.65 var(--font-sans);
     }
     .wrap {
       max-width: 680px;
       margin: 0 auto;
-      padding: 3rem 1.25rem 5rem;
+      padding: var(--space-10) var(--space-6) 5rem;
     }
+    h1, h2, h3 { font-family: var(--font-display); font-weight: 600; }
+
     header.site {
-      border-bottom: 1px solid var(--rule);
-      padding-bottom: 1.5rem;
-      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      border-bottom: 1px solid var(--hairline);
+      padding-bottom: var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+    header.site img {
+      flex: none;
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius-pill);
     }
     header.site h1 {
-      margin: 0 0 .25rem;
-      font-size: 2rem;
-      letter-spacing: -0.01em;
+      margin: 0 0 var(--space-1);
+      font-size: 36px;
+      line-height: 42px;
     }
-    header.site p { margin: 0; color: var(--muted); }
+    header.site p { margin: 0; color: var(--ink-muted); }
     header.site a { color: var(--ink); text-decoration: none; }
-    a { color: var(--accent); }
+    a { color: var(--glorp-deep); }
+
     /* ── index toolbar (search + expand all) ── */
     .faq-toolbar {
       display: flex;
-      gap: .6rem;
-      margin-bottom: 1.25rem;
+      gap: var(--space-2);
+      margin-bottom: var(--space-6);
     }
     #faq-filter {
       flex: 1;
       min-width: 0;
-      padding: .6rem .75rem;
-      border: 1px solid var(--rule);
-      border-radius: 5px;
-      background: var(--panel);
+      height: 40px;
+      padding: 0 var(--space-4);
+      border: 1.5px solid var(--ink-muted);
+      border-radius: var(--radius-sm);
+      background: var(--nebula);
       color: var(--ink);
-      font: 15px/1.4 Roboto, sans-serif;
+      font: 400 16px/1.4 var(--font-sans);
     }
-    #faq-filter::placeholder { color: var(--muted); }
-    #faq-filter:focus { outline: none; border-color: var(--accent); }
+    #faq-filter::placeholder { color: var(--ink-muted); }
+    #faq-filter:focus {
+      outline: 2px solid var(--glorp-deep);
+      outline-offset: 2px;
+      border-color: var(--glorp-deep);
+    }
+    /* Glorp secondary button */
     .faq-toolbar button {
-      padding: .6rem .85rem;
-      border: 1px solid var(--rule);
-      border-radius: 5px;
-      background: var(--panel);
-      color: var(--muted);
-      font: 13px/1.4 system-ui, sans-serif;
+      height: 40px;
+      padding: 0 20px;
+      border: 1.5px solid var(--ink-muted);
+      border-radius: var(--radius-pill);
+      background: var(--nebula);
+      color: var(--ink);
+      font: 700 15px/1 var(--font-sans);
       white-space: nowrap;
       cursor: pointer;
+      transition: transform .15s ease, border-color .15s ease;
     }
-    .faq-toolbar button:hover,
+    .faq-toolbar button:hover { border-color: var(--ink); transform: translateY(-1px); }
     .faq-toolbar button:focus-visible {
-      color: var(--accent);
-      border-color: var(--accent);
-      outline: none;
+      outline: 2px solid var(--glorp-deep);
+      outline-offset: 3px;
+      box-shadow: var(--glow);
     }
     .faq-empty {
-      color: var(--muted);
-      font-style: italic;
-      margin: 1.5rem 0;
+      color: var(--ink-muted);
+      margin: var(--space-6) 0;
     }
 
-    /* ── category accordion ── */
-    .cat { border-top: 1px solid var(--rule); }
-    .cat:last-child { border-bottom: 1px solid var(--rule); }
+    /* ── category accordion: each category is a Glorp card ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .cat {
+      background: var(--nebula);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
     .cat > summary {
       display: flex;
       align-items: center;
-      gap: .55rem;
-      padding: .95rem .25rem;
-      font-size: 1.15rem;
-      font-weight: 500;
+      gap: var(--space-2);
+      padding: var(--space-4) var(--space-6);
+      font: 500 24px/30px var(--font-display);
       cursor: pointer;
       list-style: none;
       user-select: none;
@@ -115,64 +189,85 @@
       flex: none;
       width: 0;
       height: 0;
-      border-left: 6px solid currentColor;
-      border-top: 4.5px solid transparent;
-      border-bottom: 4.5px solid transparent;
+      margin-right: var(--space-1);
+      border-left: 7px solid var(--glorp-deep);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
       transition: transform .15s ease;
     }
     .cat[open] > summary::before { transform: rotate(90deg); }
-    .cat > summary:hover,
-    .cat > summary:focus-visible { color: var(--accent); outline: none; }
-    .cat .count {
-      color: var(--muted);
-      font-size: .8rem;
-      font-weight: 400;
+    .cat > summary:hover { color: var(--glorp-deep); }
+    .cat > summary:focus-visible {
+      color: var(--glorp-deep);
+      outline: 2px solid var(--glorp-deep);
+      outline-offset: -4px;
+      border-radius: var(--radius-lg);
     }
-    .cat-body { padding: 0 0 .6rem 1.35rem; }
+    /* Glorp green tag */
+    .cat .count {
+      display: inline-flex;
+      align-items: center;
+      height: 24px;
+      padding: 0 10px;
+      border-radius: var(--radius-pill);
+      background: var(--glorp-soft);
+      color: var(--glorp-deep);
+      font: 700 11px/1 var(--font-mono);
+      letter-spacing: .08em;
+    }
+    .cat-body { padding: 0 var(--space-6) var(--space-2) calc(var(--space-6) + 19px); }
 
     /* ── individual question ── */
-    .q { border-top: 1px solid #16202e; }
-    .q:first-child { border-top: none; }
+    .q { border-top: 1px solid var(--hairline); }
     .q > summary {
-      padding: .65rem .25rem;
-      font-size: 1.02rem;
+      padding: 12px 0;
+      font-size: 17px;
+      font-weight: 600;
       cursor: pointer;
       list-style: none;
     }
     .q > summary::-webkit-details-marker { display: none; }
     .q > summary:hover,
-    .q > summary:focus-visible { color: var(--accent); outline: none; }
-    .q[open] > summary { color: var(--accent); }
-    .q-body { padding: .15rem .25rem 1.1rem; }
+    .q[open] > summary { color: var(--glorp-deep); }
+    .q > summary:focus-visible {
+      color: var(--glorp-deep);
+      outline: 2px solid var(--glorp-deep);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+    .q-body { padding: 2px 0 var(--space-4); }
     .q-body > :first-child { margin-top: 0; }
     .q[hidden], .cat[hidden] { display: none; }
     .permalink {
-      font: 13px/1.4 system-ui, sans-serif;
-      color: var(--muted);
+      font: 600 14px/20px var(--font-sans);
+      color: var(--ink-muted);
       word-break: break-all;
     }
-    .permalink a { color: var(--muted); }
+    .permalink a { color: var(--ink-muted); }
+
     .answer-page h1 {
-      font-size: 1.7rem;
-      line-height: 1.3;
-      margin: 0 0 1rem;
+      font-size: 36px;
+      line-height: 42px;
+      margin: 0 0 var(--space-4);
     }
     .image-gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: .75rem;
-      margin: 1.5rem 0;
+      gap: var(--space-4);
+      margin: var(--space-6) 0;
     }
     .image-gallery a {
       display: block;
       overflow: hidden;
-      border: 1px solid var(--rule);
-      border-radius: 5px;
-      background: var(--panel);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-sm);
+      background: var(--nebula);
       cursor: zoom-in;
+      transition: transform .15s ease, box-shadow .15s ease;
     }
+    .image-gallery a:hover { transform: translateY(-2px); box-shadow: var(--glow); }
     .image-gallery a:focus-visible {
-      outline: 2px solid var(--accent);
+      outline: 2px solid var(--glorp-deep);
       outline-offset: 3px;
     }
     .image-gallery img {
@@ -180,12 +275,9 @@
       width: 100%;
       height: 150px;
       object-fit: cover;
-      transition: opacity .15s ease, transform .15s ease;
     }
-    .image-gallery a:hover img {
-      opacity: .85;
-      transform: scale(1.02);
-    }
+
+    /* Lightbox sits on an orbit-coloured scrim in both themes. */
     .lightbox {
       position: fixed;
       inset: 0;
@@ -193,7 +285,7 @@
       display: grid;
       place-items: center;
       padding: 3rem 1.25rem 1.25rem;
-      background: rgb(0 0 0 / 88%);
+      background: rgb(14 19 34 / 90%);
     }
     .lightbox[hidden] { display: none; }
     .lightbox img {
@@ -201,7 +293,7 @@
       max-width: 100%;
       max-height: calc(100vh - 4.25rem);
       object-fit: contain;
-      box-shadow: 0 8px 40px rgb(0 0 0 / 55%);
+      border-radius: var(--radius-sm);
     }
     .lightbox__close {
       position: absolute;
@@ -210,65 +302,72 @@
       width: 2.5rem;
       height: 2.5rem;
       padding: 0;
-      border: 1px solid rgb(255 255 255 / 35%);
-      border-radius: 50%;
-      background: rgb(10 14 22 / 80%);
-      color: #fff;
-      font: 1.75rem/1 system-ui, sans-serif;
+      border: 1.5px solid var(--on-orbit-muted);
+      border-radius: var(--radius-pill);
+      background: var(--orbit);
+      color: var(--on-orbit);
+      font: 1.75rem/1 var(--font-sans);
       cursor: pointer;
     }
     .lightbox__close:hover,
     .lightbox__close:focus-visible {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--glorp);
+      color: var(--glorp);
       outline: none;
     }
     body.lightbox-open { overflow: hidden; }
     .backlink {
       display: inline-block;
-      margin-top: 2.5rem;
-      font: 14px/1 system-ui, sans-serif;
+      margin-top: var(--space-10);
+      font: 700 15px/1 var(--font-sans);
     }
     code {
-      font-size: .88em;
-      background: #1a2432;
+      font: 700 .85em var(--font-mono);
+      background: var(--glorp-soft);
       color: var(--ink);
-      padding: .1em .35em;
-      border-radius: 3px;
+      padding: .1em .4em;
+      border-radius: var(--radius-sm);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      font: 14px/1.5 system-ui, sans-serif;
-      margin: 1.25rem 0;
+      font: 400 15px/1.5 var(--font-sans);
+      margin: var(--space-4) 0;
     }
     th {
       text-align: left;
-      padding: 8px 12px;
-      color: var(--muted);
-      font-weight: 500;
-      font-size: 12px;
-      letter-spacing: .06em;
-      border-bottom: 1px solid var(--rule);
+      padding: var(--space-2) 12px;
+      color: var(--ink-muted);
+      font: 700 12px/16px var(--font-mono);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--hairline);
     }
     td {
       padding: 9px 12px;
-      border-bottom: 1px solid #1a2432;
+      border-bottom: 1px solid var(--hairline);
     }
     td:first-child {
-      color: var(--accent);
-      font-weight: 500;
+      color: var(--glorp-deep);
+      font-weight: 700;
     }
     td:last-child { text-align: right; }
     tr:last-child td { border-bottom: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .cat > summary::before, .faq-toolbar button, .image-gallery a { transition: none; }
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header class="site">
-      <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-      <p>{{ site.description }}</p>
+      <img src="{{ '/assets/img/glorp.png' | relative_url }}" alt="" width="64" height="64">
+      <div>
+        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+        <p>{{ site.description }}</p>
+      </div>
     </header>
     <main>
       {{ content }}
