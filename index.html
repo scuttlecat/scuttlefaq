@@ -2,12 +2,29 @@
 layout: default
 ---
 {%- assign cats = site.faq_categories -%}
+{%- assign poster_words = site.description | split: " " -%}
 
-<div class="faq-toolbar">
-  <input type="search" id="faq-filter" placeholder="Search questions…" autocomplete="off" spellcheck="false" aria-label="Search questions">
-  <button type="button" id="faq-expand" aria-expanded="false">Expand all</button>
-</div>
+<section class="hero">
+  <div class="wrap">
+    <h1 class="poster">
+      {%- for word in poster_words -%}
+        <i{% if forloop.last %} class="flow"{% endif %}>{{ word }}</i>
+      {%- endfor -%}
+    </h1>
 
+    <div class="ask">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="spark" x1="0" y1="0" x2="1" y2="1"><stop offset="20%" stop-color="#b169db"/><stop offset="45%" stop-color="#f7d152"/><stop offset="65%" stop-color="#46cf71"/><stop offset="85%" stop-color="#0fbffa"/></linearGradient></defs><g fill="url(#spark)" style="filter:brightness(1.8) drop-shadow(0 0 6px rgba(255,120,255,.5))"><path d="M12 2.5c.6 4.6 2.4 6.8 7 7.5-4.6.7-6.4 2.9-7 7.5-.6-4.6-2.4-6.8-7-7.5 4.6-.7 6.4-2.9 7-7.5z"/><path d="M19 15.5c.25 1.9 1 2.8 2.9 3.1-1.9.3-2.65 1.2-2.9 3.1-.25-1.9-1-2.8-2.9-3.1 1.9-.3 2.65-1.2 2.9-3.1z"/></g></svg>
+      <input type="search" id="faq-filter" placeholder="Search questions…" autocomplete="off" spellcheck="false" aria-label="Search questions">
+    </div>
+
+    <div class="faq-toolbar">
+      <span class="meta">{{ site.faqs.size }} answers · {{ cats.size }} categories</span>
+      <button type="button" id="faq-expand" aria-expanded="false">Expand all</button>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
 <p class="faq-empty" hidden>Nothing matches that.</p>
 
 <div class="faq-list">
@@ -47,4 +64,6 @@ layout: default
       </div>
     </details>
   {%- endif -%}
+</div>
+
 </div>

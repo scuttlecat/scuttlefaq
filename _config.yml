@@ -4,7 +4,7 @@ baseurl: "/scuttlefaq"
 title: "scuttlefaq"
 description: "stupid fucking questions"
 
-embed_color: "#a9d35f"
+embed_color: "#0fbffa"
 
 collections:
   faqs:
